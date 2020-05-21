@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  background: black;
 }
 
 .App-logo {
@@ -15,7 +16,7 @@
 
 .App-header {
   background-color: #282c34;
-  min-height: 100vh;
+  height: 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -35,4 +36,17 @@
   to {
     transform: rotate(360deg);
   }
+}
+.h3 {
+  text-decoration: line-through;
+  color: gold;
+}
+
+.item {
+  background-color: #234478;
+  width: 20%;
+  text-align: center;
+  margin: 4px 0;
+  padding-left: 8px;
+  cursor: pointer;
 }

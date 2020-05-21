@@ -1,24 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useReducer } from "react";
+import "./App.css";
+import { TodoReducer, initialState } from "./reducers/todoReducer";
+import Todo from "./components/List";
+import styled from "styled-components";
+
+const Title = styled.h1 `
+Color: Gold;
+`;
 
 function App() {
+  const [{ todos }, dispatch] = useReducer(TodoReducer, initialState);
+
+  const handleToggle = (index) => {
+    dispatch({ type: "TOGGLE-TODO", index });
+    console.log(index);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+      <Title>Reducer Todo</Title>
+      <Todo dispatch={dispatch} />
+      {todos.map((task, index) => (
+        <div
+          key={index}
+          onClick={() => handleToggle(index)}
+          style={{
+            margin: "0 auto",
+            width: "20%",
+            background: "blue",
+            color: "gold"
+          }}
         >
-          Learn React
-        </a>
-      </header>
+          <h3 style={{ color: task.completed ? "red" : "" }} >
+            {task.item}
+          </h3>
+        </div>
+      ))}
     </div>
   );
 }
